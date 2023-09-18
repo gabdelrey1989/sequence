@@ -17,35 +17,12 @@ public class CasillaTablero {
     JLabel label;
     int row;
     int column;
-    Carta carta;
 
     public CasillaTablero(int row, int column) {
         this.label = new JLabel();
         this.row = row;
         this.column = column;
         //label.setBorder(BorderFactory.createLineBorder(Color.RED));
-    }
-
-    public void setCarta(Carta carta) {
-        this.carta = carta;
-    }
-    
-
-    public void mostrarInfo(GestorCartas gestorCartas) {
-        if (label != null && carta != null) {
-            String info = gestorCartas.getInformacionDeCarta(carta);
-            System.out.println(info);
-            //label.setText(info);
-            label.repaint();
-        }
-    }
-        public String getNombreCarta(GestorCartas gestorCartas) {
-        String info="";
-            if (label != null && carta != null) {
-            info = gestorCartas.getInformacionDeCarta(carta);
-            label.repaint();
-        }
-        return info;
     }
     
     public int getRow() {
