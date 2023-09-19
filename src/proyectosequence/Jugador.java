@@ -36,8 +36,8 @@ public final class Jugador extends Usuario implements Serializable {
         }
     }
 
-    public Jugador(String usuario, String contra, String nombreCompleto, long fechaCreacion, int puntos, String rutaToken, int jugadoresseleccionados) {
-        super(usuario, contra, nombreCompleto, fechaCreacion, puntos, rutaToken, jugadoresseleccionados);
+    public Jugador(String usuario, String contra, String nombreCompleto, long fechaCreacion, int puntos, String rutaToken, int jugadoresseleccionados, boolean teamColors) {
+        super(usuario, contra, nombreCompleto, fechaCreacion, puntos, rutaToken, jugadoresseleccionados, teamColors);
         manoJugador = new ArrayList<>();
         cartasJugadas = new ArrayList<>();
     }

@@ -24,8 +24,9 @@ public abstract class Usuario implements Serializable {
     File fichaFile;
     ImageIcon fichaIcon;
     Date fechaCreacion;
+    boolean teamColors;
 
-    public Usuario(String usuario, String contra, String nombreCompleto, long fechaCreacion, int puntos, String fichaFilename, int cantJugadores) {
+    public Usuario(String usuario, String contra, String nombreCompleto, long fechaCreacion, int puntos, String fichaFilename, int cantJugadores, boolean teamColors) {
         this.usuario = usuario;
         this.contra = contra;
         this.nombreCompleto = nombreCompleto;
@@ -34,6 +35,8 @@ public abstract class Usuario implements Serializable {
         this.puntos = puntos;
         this.fichaFile = new File("src/fichas/" + fichaFilename);
         this.cantJugadores = cantJugadores;
+        this.teamColors = teamColors;
+        
         try {
             this.fichaIcon = new ImageIcon(ImageIO.read(fichaFile));
         } catch (Exception e) {
@@ -51,6 +54,7 @@ public abstract class Usuario implements Serializable {
         raf.writeInt(puntos);
         raf.writeUTF(fichaFile.getName());
         raf.writeInt(cantJugadores);
+        raf.writeBoolean(teamColors);        
     }
     
     

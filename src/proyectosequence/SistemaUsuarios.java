@@ -40,7 +40,10 @@ public class SistemaUsuarios {
         }
         return true;
     }
-
+    public void setUsuarioLogeadoTeamColors(boolean teamColors) {
+        usuarioLogeado.teamColors = teamColors;
+        guardarJugadores();
+    }
     private void verificar() {
         File folder = new File(usersFolder);
         if (!folder.exists()) {
@@ -79,7 +82,9 @@ public class SistemaUsuarios {
                 int puntos = raf.readInt();
                 String fichaDirec = raf.readUTF();
                 int cantJugadorews = raf.readInt();
-                Jugador p = new Jugador(usuario, contra, nombre, fechaCreacion, puntos, fichaDirec, cantJugadorews);
+                boolean teamColors = raf.readBoolean();
+
+                Jugador p = new Jugador(usuario, contra, nombre, fechaCreacion, puntos, fichaDirec, cantJugadorews, teamColors);
                 jugadores.add(p);
             }
             raf.close();
@@ -111,7 +116,7 @@ public class SistemaUsuarios {
             return false;
         }
         long fechaCreacion = new Date().getTime();
-        Jugador p = new Jugador(name, password, completeName, fechaCreacion, 0, obtenerRuta(), 4);
+        Jugador p = new Jugador(name, password, completeName, fechaCreacion, 0, obtenerRuta(), 4, false);
         jugadores.add(p);
         RandomAccessFile raf = null;
         try {

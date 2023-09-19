@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
  * @author Gabriela Mejia
  */
 public class TeamSelection extends javax.swing.JFrame {
+    boolean sameColor = false;
 
     SistemaUsuarios sistemaUsuarios;
     int cantPlayers;
@@ -22,13 +23,14 @@ public class TeamSelection extends javax.swing.JFrame {
     ArrayList<Equipos> equipos;
     Color SELECT_COLOR = new Color(83, 152, 254);
     private Color colorOriginal;
-    boolean mismoColorEquipo = false;
 
     public TeamSelection() {
         initComponents();
         colorOriginal = btnAgregarPlayer.getForeground();
         mensajeLabel.setText("Esperando a que se llenen los equipos...");
         sistemaUsuarios = new SistemaUsuarios();
+                sameColor = sistemaUsuarios.getUsuarioLogeado().teamColors;
+
         int Confi = sistemaUsuarios.getPlayersConfig();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
@@ -100,9 +102,6 @@ public class TeamSelection extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         btnAgregarPlayer = new javax.swing.JButton();
         mensajeLabel = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout mensajitoLayout = new javax.swing.GroupLayout(mensajito.getContentPane());
@@ -177,31 +176,6 @@ public class TeamSelection extends javax.swing.JFrame {
         mensajeLabel.setText("jLabel3");
         jPanel1.add(mensajeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 610, -1, -1));
 
-        jToggleButton1.setText("Escoger los colores por equipo");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, -1, -1));
-
-        jToggleButton2.setText("Escoger los colores individualmente");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 530, -1, -1));
-
-        jRadioButton1.setFont(new java.awt.Font("Papyrus", 1, 24)); // NOI18N
-        jRadioButton1.setText("Utilizar el mismo color por equipo");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, -1, -1));
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg/TeamSelection.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 780));
 
@@ -245,7 +219,7 @@ public class TeamSelection extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "INICIA LA PARTIDA");
             mensajito.setVisible(false);
 
-            new SequenceGamee(equipos, cantCartas, mismoColorEquipo).setVisible(true);
+            new SequenceGamee(equipos, cantCartas, sameColor).setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnAgregarPlayerActionPerformed
@@ -269,21 +243,6 @@ public class TeamSelection extends javax.swing.JFrame {
     private void cb_playersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_playersActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_playersActionPerformed
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        new ColoresPorEquipo().setVisible(true);
-        this.hide();
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        new ColoresIndividuales().setVisible(true);
-    }//GEN-LAST:event_jToggleButton2ActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-        boolean nuevoState = !mismoColorEquipo;
-        mismoColorEquipo = nuevoState;
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void reiniciarSeleccion() {
         cb_players.removeAllItems();
@@ -375,11 +334,8 @@ public class TeamSelection extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel mensajeLabel;
     private javax.swing.JDialog mensajito;
     // End of variables declaration//GEN-END:variables

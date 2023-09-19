@@ -19,6 +19,7 @@ public class Configuracion extends javax.swing.JFrame {
     Color SELECT_COLOR = new Color(83, 152, 254);
     private Color colorOriginal;
     private Color colorOriginal2;
+    boolean teamColors;
 
     public Configuracion() {
         initComponents();
@@ -29,6 +30,7 @@ public class Configuracion extends javax.swing.JFrame {
         int configCantJugadores = sistemaUsuarios.getPlayersConfig();
         ColorItem renderer = new ColorItem();
         cb_Color.setRenderer(renderer);
+        teamColors = sistemaUsuarios.getUsuarioLogeado().teamColors;
         ArrayList<String> fichasDisponibles = sistemaUsuarios.getFichas();
 
         for (String ficha : fichasDisponibles) {
@@ -70,6 +72,7 @@ public class Configuracion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
         btn8players = new javax.swing.JButton();
         btnRegresarAMenuPrincipal = new javax.swing.JButton();
@@ -86,6 +89,14 @@ public class Configuracion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
 
         jLabel1.setBackground(new java.awt.Color(102, 102, 102));
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
@@ -402,6 +413,15 @@ public class Configuracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegresarAMenuPrincipalMouseClicked
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+
+        System.out.println("Wasa " + teamColors);
+        teamColors = !teamColors;
+        System.out.println("Now " + teamColors);
+        sistemaUsuarios.setUsuarioLogeadoTeamColors(teamColors);        
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn2players;
     private javax.swing.JButton btn3players;
@@ -411,6 +431,7 @@ public class Configuracion extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRegresarAMenuPrincipal;
     private javax.swing.JComboBox<String> cb_Color;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
